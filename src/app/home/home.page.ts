@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -7,17 +7,22 @@ import { Component, OnInit} from '@angular/core';
 })
 export class HomePage {
 
-  catalogo:Array<object> = []
+  catalogo: Array<object> = []
 
-  ionViewDidEnter (){
-     console.log( "EXECUTOU O VIEW DID ENTER")
-     this.catalogo.push({
-       nome:'calabresa maluca gourmet',
-       descricao:'queijo, Catupiry, Batatapalha, cogumelos mangericão e mais uma colher de caviar.',
-       preco:'R$72,00'
-       
-     })
+  ionViewDidEnter() {
+    console.log("EXECUTOU O VIEW DID ENTER")
+    this.listarcatalogo()
   }
- 
+
+  listarcatalogo() {
+    const tamanhodobanco = localStorage.length
+    for (let i = 0; i < tamanhodobanco; i++) {
+      const chaveatual = localStorage.key(i)
+      const pizzaString = localStorage.getItem(chaveatual)
+      const pizzaObjeto = JSON.parse(pizzaString)
+      this.catalogo.push(pizzaObjeto)
+    }
+  }
+
 
 }
