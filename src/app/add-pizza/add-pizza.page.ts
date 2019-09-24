@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+   
+ import { Component, OnInit } from '@angular/core';
 import { ToastController, NavController } from '@ionic/angular';
 import { NavComponent } from '@ionic/core';
+
 
 @Component({
   selector: 'app-add-pizza',
@@ -15,11 +17,12 @@ export class AddPizzaPage implements OnInit {
   }
 
   salvar(pizza){
+    const chavePizza = Math.random() * 999
     const pizzaDados = pizza.value
+    pizzaDados.id = chavePizza
     const pizzaDadosString = JSON.stringify(pizzaDados);
     console.log(pizzaDadosString);
 
-    const chavePizza = Math.random() * 999
     console.log(chavePizza)
     console.log(chavePizza.toString())
 
@@ -31,16 +34,13 @@ export class AddPizzaPage implements OnInit {
   voltarParaHome(){
     this.nav.back()
   }
-  exibirMensagemSucesso(){
-      this.toast.create({
-        message: 'pizza Cadastrada com Sucesso !.',
+  async exibirMensagemSucesso() {
+      let criacaoDoToast = await this.toast.create({
+        message: 'pizza Cadastrada com Sucesso !',
         duration: 2000,
         color:'dark'
-      }).then(toast => {
-        toast.present(
-
-        )
       })
+      criacaoDoToast.present()
       
   }
 }

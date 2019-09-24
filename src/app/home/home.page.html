@@ -14,30 +14,42 @@
 <ion-content>
   <div class="ion-padding">
     <ion-searchbar></ion-searchbar>
-    <br/>
-    <br/>
+    <br />
+    <br />
     <div *ngIf="catalogo !== undefined && catalogo.length > 0">
       <div *ngFor="let pizza of catalogo">
-          <ion-card>
-              <img src="../assets/pizza1.jpg"/>
-              <ion-card-content>
-                <ion-card-title>
-                  {{pizza.nomePizza}}
-                </ion-card-title>
-                <ion-card-subtitle>
-                  {{pizza.descricaoPizza}}
-                </ion-card-subtitle>
-                <div>
-                  <h1 text-rigth>{{pizza.precoPizza}}</h1>
-                </div>
-                <div text-center class="ion-margin-top">
-                  <ion-button color='danger'  expand="block" name='cart' slot='start'>comprar</ion-button >
-                </div>
-              </ion-card-content>
-            </ion-card>
+        <ion-card>
+          <div class="card-menu">
+            <img src="../assets/pizza1.jpg" />
+            <ion-button (click)="exibirOpcoes(pizza.id)">
+              <ion-icon name='more' mode='md'></ion-icon>
+            </ion-button>
+          </div>
+          <ion-card-content>
+            <ion-card-title>
+              {{pizza.nomePizza}}
+            </ion-card-title>
+            <ion-card-subtitle>
+              {{pizza.descricaopizza}}
+            </ion-card-subtitle>
+            <div>
+              <h1 text-rigth>{{pizza.precopizza}}</h1>
+            </div>
+            <div text-center class="ion-margin-top">
+              <ion-button color='danger' expand="block" name='cart' slot='start'>comprar</ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
 
       </div>
     </div>
-   
+    <div *ngIf="catalogo.length == 0">
+      <ion-card class="card-transparente">
+        <img src="../assets/nao-tem-pizza.png" />
+        <ion-card-title>
+          Nao há Pizzas no momento.
+        </ion-card-title>
+      </ion-card>
+    </div>
   </div>
 </ion-content>
