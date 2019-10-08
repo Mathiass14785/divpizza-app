@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>comprar-pizza {{nomePizza}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <img src="../assets/pizza1.jpg" />
+    <ion-card-content>
+      <ion-card-title>{{nomePizza}}</ion-card-title>
+      <br>
+      <ion-card-subtitle>{{descricaoPizza}}</ion-card-subtitle>
+      <br>
+      <ion-card-title>R${{precoPizza}}</ion-card-title>
+      <br>
+      <h1>Vai  dividir com quantos Amigos?</h1>
+      <div style="display:flex">
+        <ion-button color="success" type="button" (click)="decrementar()">
+          <ion-icon name="remove-circle"></ion-icon>
+        </ion-button>
+        <ion-item style="margin-right: 12px;">
+          <ion-input class="valor" value="{{divisor}}"></ion-input>
+        </ion-item>
+        <ion-button color="success" type="button" (click)="incrementar()">
+          <ion-icon name="add-circle"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-card-content>
+    <ion-button color="success" expand="block" [routerLink]="['/finalizar-compra',idPizza,divisor]">Continuar</ion-button>
+  </ion-card>
+</ion-content>

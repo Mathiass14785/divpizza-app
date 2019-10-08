@@ -10,5 +10,36 @@
 </ion-header>
 
 <ion-content>
-
+  <form #ngform="ngForm" (ngSubmit)="editar(form)">
+    <div *ngIf="pizzaPronta">
+        <ion-item>
+            <ion-label position="floating">Nome da Pizza</ion-label>
+            <ion-input type="text" name="nomePizza" value="{{nomePizza}}" ngmodel></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label position="floating">Preço da PIzza</ion-label>
+            <ion-input type="text" name="precoPizza" value="{{precoPizza}}" ngmodel></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label position="floating">Descriçao</ion-label>
+              <ion-textarea type="textarea" name="descricaoPizza" value="{{descricaoPizza}}" ngmodel></ion-textarea>
+              <br/>
+              <br/>
+          </ion-item>
+          <ion-button expand="block" type="submit">Salvar</ion-button>
+        </div>
+        <div *ngIf="!pizzaPronta">
+          <ion-item>
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </ion-item>
+          <ion-item>
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-item>
+            <ion-item>
+                <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-item>
+        </div>                                                          
+        </form>
+   
+    
 </ion-content>

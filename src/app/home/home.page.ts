@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, CompilerFactory } from '@angular/core';
 import { ActionSheetController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
@@ -51,5 +51,13 @@ export class HomePage {
     })
 
     criacaoMenu.present()
+    
   }
-}
+  comprar(id){
+    console.log(id)
+    this.route.navigate(['comprar-pizza',id])
+
+    
+  }
+} 
+

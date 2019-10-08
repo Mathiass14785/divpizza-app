@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-edit-pizza',
@@ -12,12 +13,13 @@ export class EditPizzaPage  {
   descricaoPizza:String =""
   precoPizza:String = ""
   idPizza:String = ""
+  pizzaPronta:boolean = false;
 
-  constructor(private activatedRoute:ActivatedRoute) { }
+  constructor(private activatedRoute:ActivatedRoute ,private toast:ToastController, private nav :NavController ) { }
 
   ngOnInit() {
   }
-  ionviewDidEnter() {
+  ionViewDidEnter() {
     this.idPizza = this.activatedRoute.snapshot.params.id
     this.recuperarPizza(this.idPizza)
   }
@@ -27,9 +29,34 @@ export class EditPizzaPage  {
     let pizzaObjeto = JSON.parse(pizzaString)
     console.log(pizzaObjeto)
 
+    setTimeout(() =>{
+    this.pizzaPronta = true
     this.nomePizza = pizzaObjeto.nomePizza
     this.descricaoPizza = pizzaObjeto.descricaoPizza
     this.precoPizza = pizzaObjeto.precoPizza 
+  
 
+    },2000)
   }
+  editar (form){
+    let dadosPizza= form.value
+    dadosPizza.id = this.idPizza 
+    let dadosString = JSON.stringify(dadosPizza)
+    localStorage.setItem(this.idPizza.toString(), dadosString)
+    this.exibirMensagemSucesso()
+    this.voltarParaHome()
+  }
+  voltarParaHome(){
+    this.nav.back()
+  }
+
+  async exibirMensagemSucesso(){
+    let criacaoDotoast = await this.toast.create({
+      message:'Pizza Editada',
+      duration: 2000,
+      color: 'dark'
+    })
+    criacaoDotoast.present()
+  }
+  
 }
